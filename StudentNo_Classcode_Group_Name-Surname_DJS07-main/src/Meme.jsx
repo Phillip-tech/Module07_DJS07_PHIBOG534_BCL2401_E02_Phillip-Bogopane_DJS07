@@ -1,6 +1,9 @@
+
 import React from "react";
 
+/*Define a functional component called Meme*/
 export default function Meme() {
+    /* Define state variables using useState hook*/
     const [meme, setMeme] = React.useState({
         topText: "",
         bottomText: "",
@@ -8,12 +11,14 @@ export default function Meme() {
     })
     const [allMemes, setAllMemes] = React.useState([]);
     
+    /*UseEffect hook to fetch meme data when the component mounts*/
     React.useEffect(() => {
         fetch("https://api.imgflip.com/get_memes")
             .then(res => res.json())
             .then(data => setAllMemes(data.data.memes));
     }, []);
     
+    /*Function to get a random meme image*/
     function getMemeImage() {
         const randomNumber = Math.floor(Math.random() * allMemes.length);
         const url = allMemes[randomNumber].url;
@@ -26,6 +31,7 @@ export default function Meme() {
         
     }
     
+    /*Function to handle input changes*/
     function handleChange(event) {
         const {name, value} = event.target;
         setMeme(prevMeme => ({
@@ -34,6 +40,7 @@ export default function Meme() {
         }));
     }
     
+    /*Render the JSX elements*/
     return (
         <main>
             <div className="form">
@@ -68,3 +75,4 @@ export default function Meme() {
         </main>
     );
 }
+

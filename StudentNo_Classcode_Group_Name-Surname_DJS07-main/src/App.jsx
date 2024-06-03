@@ -1,6 +1,6 @@
 
-import Header from "./Header";
-import Meme from "./Meme";
+import Header from "./components/Header";
+import Meme from "./components/Meme";
 
 
 export default function App() {
